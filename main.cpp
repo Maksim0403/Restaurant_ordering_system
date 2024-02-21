@@ -2,6 +2,7 @@
 #include <cstring>
 #include "Restaurant.cpp"
 #include "Employee.cpp"
+#include "Order.cpp"
 
 using namespace std;
 
@@ -29,9 +30,20 @@ int main() {
 
     employee1.setSalary(1000);
     cout<<"New salary: "<<employee1.getSalary()<<endl;
+    cout<<"-------------------------------------"<<endl;
 
     employee2.outputEmployeeInfo();
     employee3.outputEmployeeInfo();
     employee4.outputEmployeeInfo();
+
+    Order menu("Salad", 220);
+    Order menu1("Fries", 120);
+    Order *lastMenu = new Order("Steak", 200);
+
+    menu.outputOrderInfo();
+    menu1.outputOrderInfo();
+    lastMenu->outputOrderInfo();
+
+    delete lastMenu;
     return 0;
 }
