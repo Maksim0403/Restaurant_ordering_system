@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
-#include "Restaurant.h"
+#include "Restaurant.cpp"
+#include "Employee.cpp"
 
 using namespace std;
 
@@ -18,5 +19,19 @@ int main() {
 
     rest1.outputRestaurantInfo();
     rest2.outputRestaurantInfo();
+
+    Employee employee1("Fred", 21, "Waiter", 2000);
+    Employee employee2("John", 24, "Admin");
+    Employee employee3("Alex", 22);
+    Employee employee4("Kevin");
+
+    employee1.outputEmployeeInfo();
+
+    employee1.setSalary(1000);
+    cout<<"New salary: "<<employee1.getSalary()<<endl;
+
+    employee2.outputEmployeeInfo();
+    employee3.outputEmployeeInfo();
+    employee4.outputEmployeeInfo();
     return 0;
 }

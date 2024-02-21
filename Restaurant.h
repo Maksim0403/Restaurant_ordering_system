@@ -11,7 +11,7 @@ private:
     string status;
 public:
     Restaurant(string newTitle = "None", string newLocation = "None", string status = "Undefined");
-    ~Restaurant();
+    virtual ~Restaurant();
 
     string &getTitle();
     string &getLocation();
