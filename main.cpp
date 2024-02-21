@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstring>
+#include "Restaurant.h"
 
 using namespace std;
 
@@ -11,6 +13,10 @@ plan:
 */
 
 int main() {
-    cout << "Hello world" << endl;
+    Restaurant rest1("Aristocrat", "Holovna", "Opened");
+    Restaurant rest2;
+
+    rest1.outputRestaurantInfo();
+    rest2.outputRestaurantInfo();
     return 0;
 }
