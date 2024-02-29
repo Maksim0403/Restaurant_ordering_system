@@ -10,21 +10,33 @@ private:
     int age;
     string position;
     int salary;
+    static int amountOfEmployees;
 public:
     Employee();
     Employee(string name);
     Employee(string name, int age);
     Employee(string name, int age, string position);
     Employee(string name, int age, string position, int salary);
+    Employee(const Employee &other);
+    Employee(Employee &&other) noexcept;
+    Employee operator+();
     virtual ~Employee();
 
+//static
+    static int getAmountOfEmployees();
+    static void outputAmountOfEmployees();
 
-    string &getName();
+    string getName() const;
     int &getAge();
-    string &getPosition();
-    void setSalary(int money);
+    string getPosition() const;
     int &getSalary();
+
+    void setSalary(int money);
+    void setName(string &name);
+    void setAge(int age);
+    void setPosition(string &position);
     void outputEmployeeInfo();
+
 };
 
 
