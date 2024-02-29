@@ -15,34 +15,45 @@ plan:
 */
 
 int main() {
-    Restaurant rest1("Aristocrat", "Holovna", "Opened");
-    Restaurant rest2;
+    Restaurant rest1{"Aristocrat", "Holovna", "Opened"};
+    Restaurant rest2{"Lavanda"};
+    Restaurant rest3(rest1);
 
-    rest1.outputRestaurantInfo();
-    rest2.outputRestaurantInfo();
+    cout<<rest1<<rest2<<rest3;
+    //rest1.outputRestaurantInfo();
+    //rest2.outputRestaurantInfo();
+    //rest3.outputRestaurantInfo();
 
-    Employee employee1("Fred", 21, "Waiter", 2000);
-    Employee employee2("John", 24, "Admin");
-    Employee employee3("Alex", 22);
-    Employee employee4("Kevin");
+    Employee employee1{"Fred", 21, "Waiter", 2000};
+    Employee employee2{"John", 24, "Admin"};
+    Employee employee3{"Alex", 22};
+    Employee employee4{};
+    Employee salaryPlus = + employee2;
 
     employee1.outputEmployeeInfo();
-
     employee1.setSalary(1000);
-    cout<<"New salary: "<<employee1.getSalary()<<endl;
-    cout<<"-------------------------------------"<<endl;
-
-    employee2.outputEmployeeInfo();
+    employee1.outputEmployeeInfo();
+    salaryPlus.outputEmployeeInfo();
     employee3.outputEmployeeInfo();
     employee4.outputEmployeeInfo();
+    Employee::outputAmountOfEmployees();
 
-    Order menu("Salad", 220);
-    Order menu1("Fries", 120);
-    Order *lastMenu = new Order("Steak", 200);
 
+    Order menu("Salad ", 220);
+    Order menu1("Fries ", 320);
+    Order *lastMenu = new Order("Steak ", 280);
+    Order otherMenu(menu);
+    Order orderMinus = menu1 + menu;
+    Order menu2;
+
+    orderMinus.outputOrderInfo();
     menu.outputOrderInfo();
     menu1.outputOrderInfo();
+    otherMenu.outputOrderInfo();
     lastMenu->outputOrderInfo();
+
+    cin>>menu2;
+    cout<<menu2;
 
     delete lastMenu;
     return 0;
