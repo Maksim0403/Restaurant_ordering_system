@@ -6,7 +6,7 @@ using namespace std;
 #define LAB2_CLASS_OBJECTS_FOOD_H
 
 class Order {
-private:
+protected:
     string items;
     int price;
 public:
