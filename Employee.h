@@ -5,7 +5,7 @@ using namespace std;
 #define LAB2_CLASS_OBJECTS_WORKERS_H
 
 class Employee {
-private:
+protected:
     string name;
     int age;
     string position;
@@ -19,7 +19,8 @@ public:
     Employee(string name, int age, string position, int salary);
     Employee(const Employee &other);
     Employee(Employee &&other) noexcept;
-    Employee operator+();
+    Employee operator++();
+    Employee& operator=(const Employee &rhs);
     virtual ~Employee();
 
 //static
@@ -38,7 +39,6 @@ public:
     void outputEmployeeInfo();
 
 };
-
 
 
 #endif //LAB2_CLASS_OBJECTS_WORKERS_H

@@ -1,4 +1,6 @@
 #include "Employee.h"
+#include "Waiter.h"
+
 using namespace std;
 //const
 string Employee::getName() const {
@@ -39,12 +41,12 @@ int Employee::getAmountOfEmployees() {
     return amountOfEmployees;
 }
 //overloading unary operator
-Employee Employee::operator+() {
+Employee Employee::operator++() {
     Employee employee;
     employee.name = name;
     employee.age = age;
     employee.position = position;
-    employee.salary = +2000;
+    employee.salary = +2100;
     return employee;
 }
 
@@ -96,14 +98,12 @@ void Employee::outputAmountOfEmployees() {
     cout<<"-------------------------------------"<<endl;
 }
 
-
-
-
-
-
-
-
-
+Employee &Employee::operator=(const Employee &rhs) {
+    if(this != &rhs){
+        salary = rhs.salary;
+    }
+    return *this;
+}
 
 
 
