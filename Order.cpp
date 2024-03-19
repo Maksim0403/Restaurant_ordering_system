@@ -18,13 +18,6 @@ void Order::setItems(const string &items) {
 void Order::setPrice(int price) {
     this->price = price;
 }
-//overloading binary operator
-Order Order::operator+(Order order2) {
-    Order order;
-    order.price = price + order2.price;
-    order.items = items + order2.items;
-    return order;
-}
 
 int Order::discount(int newPrice) {
     if(price >= 300){
@@ -32,6 +25,21 @@ int Order::discount(int newPrice) {
     }
     return price;
 }
+
+void Order::output(ostream &os) const {
+    //Order::discount(50);
+    cout<<"Item: "<< items <<endl<<
+        "Price: "<<price<<endl;
+    cout<<"-------------------------------------"<<endl;
+}
+
+//overloading binary operator
+/*Order Order::operator+(Order order2) {
+    Order order;
+    order.price = price + order2.price;
+    order.items = items + order2.items;
+    return order;
+}*/
 
 std::istream &operator>>(istream &is, Order &order) {
     cout<<"Enter item: "<<endl;
@@ -41,7 +49,7 @@ std::istream &operator>>(istream &is, Order &order) {
     return is;
 }
 
-std::ostream &operator<<(ostream &os, Order &order) {
+std::ostream &operator<<(ostream &os, const Order &order) {
     os << "Item: "<< order.items <<endl<<
        "Price: "<< order.price <<endl<<
        "-------------------------------------"<<endl;
@@ -57,20 +65,13 @@ Order::Order() {
 Order::Order(string items, int price)
         : items(items), price(price) {cout<<"Constructor was called"<<endl;}
 
-
 Order::Order(const Order &other)
         :items(other.items), price(other.price) {cout<<"Copy constructor was called"<<endl;}
-
 
 Order::~Order() {}
 
 
-void Order::outputOrderInfo() {
-    Order::discount(50);
-    cout<<"Item: "<< items <<endl<<
-        "Price: "<<price<<endl;
-        cout<<"-------------------------------------"<<endl;
-}
+
 
 
 
