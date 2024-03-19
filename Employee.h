@@ -1,10 +1,12 @@
 #include <iostream>
 #include <cstring>
+#include "Printable.h"
+
 using namespace std;
 #ifndef LAB2_CLASS_OBJECTS_WORKERS_H
 #define LAB2_CLASS_OBJECTS_WORKERS_H
 
-class Employee {
+class Employee : public Printable{
 protected:
     string name;
     int age;
@@ -12,6 +14,8 @@ protected:
     int salary;
     static int amountOfEmployees;
 public:
+    friend ostream &operator<<(ostream &os, Employee &employee);
+
     Employee();
     Employee(string name);
     Employee(string name, int age);
@@ -19,13 +23,10 @@ public:
     Employee(string name, int age, string position, int salary);
     Employee(const Employee &other);
     Employee(Employee &&other) noexcept;
-    Employee operator++();
     Employee& operator=(const Employee &rhs);
     virtual ~Employee();
 
-//static
     static int getAmountOfEmployees();
-    static void outputAmountOfEmployees();
 
     string getName() const;
     int &getAge();
@@ -33,11 +34,12 @@ public:
     int &getSalary();
 
     void setSalary(int money);
-    void setName(string &name);
+    void setName(string name);
     void setAge(int age);
     void setPosition(string &position);
-    void outputEmployeeInfo();
 
+    void output(ostream &os) const override;
+    virtual void outputAmountOfEmployees() const;
 };
 
 
