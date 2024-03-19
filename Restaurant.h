@@ -1,10 +1,12 @@
 #include <iostream>
 #include <cstring>
+#include "Printable.h"
+
 using namespace std;
 #ifndef LAB2_CLASS_OBJECTS_RESTAURANT_H
 #define LAB2_CLASS_OBJECTS_RESTAURANT_H
 
-class Restaurant {
+class Restaurant : public Printable {
 private:
     string title;
     string location;
@@ -26,7 +28,7 @@ public:
     void setLocation(const string &location);
     void setStatus(string &status);
 
-    void outputRestaurantInfo();
+    void output(ostream &os) const override;
 };
 
 

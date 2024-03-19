@@ -47,13 +47,13 @@ Restaurant::~Restaurant() {
     cout<<"Destructor was called"<<endl;
 }
 
-
-void Restaurant::outputRestaurantInfo() {
+void Restaurant::output(ostream &os) const {
     cout<<"Title: "<<title<<endl<<
         "Location: "<<location<<endl<<
         "Status: "<<status<<endl;
-    cout<<"-------------------------------------"<<endl;
 }
+
+
 
 
 
