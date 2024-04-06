@@ -59,14 +59,14 @@ std::ostream &operator<<(ostream &os, const Order &order) {
 Order::Order() {
     items = "";
     price = 0;
-    cout<<"Constructor with no args was called"<<endl;
+
 }
 
 Order::Order(string items, int price)
-        : items(items), price(price) {cout<<"Constructor was called"<<endl;}
+        : items(items), price(price) {}
 
 Order::Order(const Order &other)
-        :items(other.items), price(other.price) {cout<<"Copy constructor was called"<<endl;}
+        :items(other.items), price(other.price) {}
 
 Order::~Order() {}
 

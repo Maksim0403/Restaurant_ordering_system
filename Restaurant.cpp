@@ -34,17 +34,16 @@ ostream &operator<<(ostream &os, const Restaurant &restaurant) {
 }
 
 Restaurant::Restaurant() {
-        cout<<"Constructor with no args was called"<<endl;
+
 }
 
 Restaurant::Restaurant(string title, string location, string status)
-        : title{title}, location{location}, status{status} {cout<<"Constructor was called"<<endl;}
+        : title{title}, location{location}, status{status} {}
 
 Restaurant::Restaurant(const Restaurant &other)
-        :title(other.title), location(other.location), status(other.status) {cout<<"Copy constructor was called"<<endl;}
+        :title(other.title), location(other.location), status(other.status) {}
 
 Restaurant::~Restaurant() {
-    cout<<"Destructor was called"<<endl;
 }
 
 void Restaurant::output(ostream &os) const {

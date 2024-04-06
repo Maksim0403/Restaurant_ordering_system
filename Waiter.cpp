@@ -41,24 +41,24 @@ void Waiter::output(ostream &os) const {
 Waiter::Waiter() {amountOfWaiters++;}
 
 Waiter::Waiter(string name, int age)
-        : Employee(name, age) {cout<<"Derived constructor"<<endl;amountOfWaiters++;}
+        : Employee(name, age) {amountOfWaiters++;}
 
 Waiter::Waiter(string name, int age, string position, int salary)
-        : Employee(name, age, position, salary) {cout<<"Derived constructor"<<endl;amountOfWaiters++;}
+        : Employee(name, age, position, salary) {amountOfWaiters++;}
 
 Waiter::Waiter(string name, int age, string position, int salary, int floorNumber)
-        : Employee(name, age, position, salary), floorNumber{0} {cout<<"Derived constructor"<<endl;amountOfWaiters++;}
+        : Employee(name, age, position, salary), floorNumber{0} {amountOfWaiters++;}
 
 Waiter::Waiter(string name, int age, string position, int salary, int floorNumber, Order order)
-        : Employee(name, age, position, salary), floorNumber{floorNumber}, order{order} {cout<<"Derived constructor"<<endl;amountOfWaiters++;}
+        : Employee(name, age, position, salary), floorNumber{floorNumber}, order{order} {amountOfWaiters++;}
 
-Waiter::~Waiter() {cout << "Derived destructor" << endl;}
+Waiter::~Waiter() {}
 
 Waiter::Waiter(const Waiter &other)
-        : Employee(other), floorNumber{other.floorNumber} {cout << "Derived copy constructor" << endl;}
+        : Employee(other), floorNumber{other.floorNumber} {}
 
 Waiter::Waiter(Waiter &&other) noexcept
-        : Employee(other), floorNumber{other.floorNumber} {cout << "Derived move constructor" << endl;}
+        : Employee(other), floorNumber{other.floorNumber} {}
 
 
 

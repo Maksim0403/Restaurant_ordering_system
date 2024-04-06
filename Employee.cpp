@@ -73,48 +73,48 @@ void Employee::output(ostream &os) const {
 
 Employee::Employee()
         : Employee{"None", 0, "Undefined", 0} {
-    cout << "Constructor with no args was called" << endl;
+    //cout << "Constructor with no args was called" << endl;
     amountOfEmployees++;
 }
 
 Employee::Employee(string name)
         : Employee{name, 0, "Undefined", 0} {
-    cout << "Constructor was called" << endl;
+    //cout << "Constructor was called" << endl;
     amountOfEmployees++;
 }
 
 Employee::Employee(string name, int age)
         : Employee{name, age, "Undefined", 0} {
-    cout << "Constructor was called" << endl;
+    //cout << "Constructor was called" << endl;
     amountOfEmployees++;
 }
 
 Employee::Employee(string name, int age, string position)
         : Employee{name, age, position, 0} {
-    cout << "Constructor was called" << endl;
+    //cout << "Constructor was called" << endl;
     amountOfEmployees++;
 }
 
 Employee::Employee(string name, int age, string position, int salary)
         : name(name), age(age), position(position), salary(salary) {
-    cout << "Constructor was called" << endl;
+    //cout << "Constructor was called" << endl;
     amountOfEmployees++;
 }
 
 //Copy constructor
 Employee::Employee(const Employee &other)
         : name(other.name), age(other.age), position(other.position), salary(other.salary) {
-    cout << "Copy constructor was called" << endl;
+    //cout << "Copy constructor was called" << endl;
 }
 
 //Move constructor
 Employee::Employee(Employee &&other) noexcept
         : name(other.name), age(other.age), position(other.position), salary(other.salary) {
-    cout << "Move constructor was called" << endl;
+    //cout << "Move constructor was called" << endl;
 }
 
 Employee::~Employee() {
-    cout << "Destructor was called" << endl;
+    //cout << "Destructor was called" << endl;
     amountOfEmployees--;
 }
 

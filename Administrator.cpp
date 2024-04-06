@@ -25,21 +25,21 @@ ostream &operator<<(ostream &os, Administrator& administrator) {
 Administrator::Administrator() {amountOfAdministrators++;}
 
 Administrator::Administrator(string name, int age)
-        : Employee(name, age) {cout<<"Derived constructor"<<endl;amountOfAdministrators++;}
+        : Employee(name, age) {amountOfAdministrators++;}
 
 Administrator::Administrator(string name, int age, string position, int salary)
-        : Employee(name, age, position, salary) {cout<<"Derived constructor"<<endl;amountOfAdministrators++;}
+        : Employee(name, age, position, salary) {amountOfAdministrators++;}
 
 Administrator::Administrator(string name, int age, string position, int salary, int entranceNumber)
-        : Employee(name, age, position, salary), entranceNumber{entranceNumber} {cout<<"Derived constructor"<<endl;amountOfAdministrators++;}
+        : Employee(name, age, position, salary), entranceNumber{entranceNumber} {amountOfAdministrators++;}
 
-Administrator::~Administrator() {cout << "Derived destructor" << endl;}
+Administrator::~Administrator() {}
 
 Administrator::Administrator(const Administrator &other)
-        : Employee(other), entranceNumber{other.entranceNumber} {cout << "Derived copy constructor" << endl;}
+        : Employee(other), entranceNumber{other.entranceNumber} {}
 
 Administrator::Administrator(Administrator &&other) noexcept
-        : Employee(other), entranceNumber{other.entranceNumber} {cout << "Derived move constructor" << endl; }
+        : Employee(other), entranceNumber{other.entranceNumber} {}
 
 void Administrator::output(ostream &os) const {
     Employee::output(os);

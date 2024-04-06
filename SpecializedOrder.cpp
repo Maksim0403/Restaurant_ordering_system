@@ -5,13 +5,13 @@ int SpecializedOrder::getAmountOfPlaces() {
     return amountOfPlaces;
 }
 
-SpecializedOrder::SpecializedOrder() {cout<<"Derived constructor"<<endl;}
+SpecializedOrder::SpecializedOrder() {}
 
 SpecializedOrder::SpecializedOrder(string items, int price)
-        : Order(items, price) {cout<<"Derived constructor"<<endl;}
+        : Order(items, price) {}
 
 SpecializedOrder::SpecializedOrder(string items, int price, int amountOfPlaces)
-        : Order(items, price) {cout<<"Derived constructor"<<endl;}
+        : Order(items, price) {}
 
-SpecializedOrder::~SpecializedOrder() {cout << "Derived destructor" << endl;}
+SpecializedOrder::~SpecializedOrder() {}
 

@@ -8,3 +8,7 @@ ostream &operator<<(ostream &os, const Printable &obj) {
 Printable::~Printable() {
 
 }
+
+istream &operator>>(istream &is, const Printable &obj) {
+    return is;
+}
