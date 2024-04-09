@@ -14,7 +14,7 @@ protected:
     int salary;
     static int amountOfEmployees;
 public:
-    friend ostream &operator<<(ostream &os, Employee &employee);
+    friend ostream &operator<<(ostream &os, const Employee &employee);
 
     Employee();
     Employee(string name);

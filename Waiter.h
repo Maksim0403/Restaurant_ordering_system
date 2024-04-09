@@ -15,7 +15,7 @@ protected:
     Order order;
     static int amountOfWaiters;
 public:
-    friend ostream &operator<<(ostream &os, Waiter &waiter);
+    friend ostream &operator<<(ostream &os, const Waiter &waiter);
 
     Waiter();
     Waiter(string name, int age);

@@ -20,14 +20,13 @@ Waiter &Waiter::operator=(const Waiter &rhs) {
     return *this;
 }
 
-ostream &operator<<(ostream &os, Waiter &waiter)  {
-    os <<"Name: "<<waiter.name<<endl<<
-       "Age: "<<waiter.age<<endl<<
-       "Position: "<<waiter.position<<endl<<
-       "Salary: "<<waiter.salary<<endl<<
-       "Floor number: " << waiter.floorNumber << endl<<
-       "Order: " << waiter.order<<endl;
-    cout<<"-------------------------------------"<<endl;
+ostream &operator<<(ostream &os, const Waiter &waiter)  {
+    os << "Waiter (Name: "<<waiter.name <<
+       ", Age: "<<waiter.age <<
+       ", Position: "<<waiter.position <<
+       ", Salary: "<<waiter.salary <<
+       ", Floor number: " << waiter.floorNumber <<
+       ", Order: " << waiter.order << ")" << endl;
     return os;
 }
 

@@ -12,7 +12,7 @@ protected:
     int entranceNumber;
     static int amountOfAdministrators;
 public:
-    friend ostream &operator<<(ostream &os, Administrator& administrator);
+    friend ostream &operator<<(ostream &os, const Administrator& administrator);
 
     Administrator();
     Administrator(string name, int age);

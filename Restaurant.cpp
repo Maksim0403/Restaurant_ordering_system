@@ -26,10 +26,9 @@ void Restaurant::setStatus(string &status) {
 }
 
 ostream &operator<<(ostream &os, const Restaurant &restaurant) {
-    os << "Title: "<<restaurant.title<<endl<<
-        "Location: "<<restaurant.location<<endl<<
-        "Status: "<<restaurant.status<<endl<<
-        "-------------------------------------"<<endl;
+    os << "Restaurant (Title: " << restaurant.title <<
+        ", Location: " << restaurant.location <<
+        ", Status: " << restaurant.status << ")" << endl;
     return os;
 }
 

@@ -26,6 +26,7 @@ int Order::discount(int newPrice) {
     return price;
 }
 
+
 void Order::output(ostream &os) const {
     //Order::discount(50);
     cout<<"Item: "<< items <<endl<<
@@ -50,9 +51,8 @@ std::istream &operator>>(istream &is, Order &order) {
 }
 
 std::ostream &operator<<(ostream &os, const Order &order) {
-    os << "Item: "<< order.items <<endl<<
-       "Price: "<< order.price <<endl<<
-       "-------------------------------------"<<endl;
+    os << "Order (Item: "<< order.items <<
+       ", Price: "<< order.price << ")" << endl;
     return os;
 }
 

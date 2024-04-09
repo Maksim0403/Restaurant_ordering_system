@@ -55,12 +55,11 @@ Employee &Employee::operator=(const Employee &rhs) {
     return *this;
 }
 
-ostream &operator<<(ostream &os, Employee &employee) {
-    os << "Name: " << employee.name << endl <<
-       "Age: " << employee.age << endl <<
-       "Position: " << employee.position << endl <<
-       "Salary: " << employee.salary << endl;
-    os << "-------------------------------------" << endl;
+ostream &operator<<(ostream &os,const  Employee &employee) {
+    os << "Employee (Name: " << employee.name <<
+       ", Age: " << employee.age <<
+       ", Position: " << employee.position <<
+       ", Salary: " << employee.salary << ")"<< endl;
     return os;
 }
 
