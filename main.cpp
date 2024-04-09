@@ -3,6 +3,7 @@
 #include <istream>
 #include <ostream>
 #include <vector>
+#include <stdexcept>
 #include "Restaurant.cpp"
 #include "Employee.cpp"
 #include "Order.cpp"
@@ -20,21 +21,15 @@ plan:
  3. class order (items, price)
 */
 
-enum class User{
+enum class User {
     user, admin, undefined
 };
 
-enum class Action{
-    read, write
+enum class Database {
+    administators, employees, orders, restaurants, waiters, undefined
 };
 
-void outputInfoOnUI(const Printable &obj);
-void outputAmountOfEmployees(const Employee &employee);
-
-int main() {
-    Administrator administrator1{"Ivan", 34, "Administrator", 3000, 2};
-    Waiter waiter1{"Petro", 23, "Waiter", 1200, 3};
-
+User login() {
     string username;
     User usertype = User::undefined;
 
@@ -42,12 +37,12 @@ int main() {
     cout << "Input username: " << endl;
     cin >> username;
 
-    if(username == "admin"){
+    if (username == "admin") {
         string password;
         cout << "Input password: " << endl;
         cin >> password;
 
-        if(password == "admin"){
+        if (password == "admin") {
             usertype = User::admin;
         } else {
             cout << "Incorrect credentials!" << endl;
@@ -57,62 +52,346 @@ int main() {
     }
 
     cout << "Login successful!" << endl;
+    return usertype;
+}
 
-    if(usertype == User::admin){
+
+void userActivity(string text){
+    string fileName = "userActivity.txt";
+    ofstream write;
+    write.open(fileName, ios_base::app);
+    if (!write.is_open()) {
+        cerr << "File opening error!" << endl;
+    } else {
+        write << text << endl;
+    }
+    write.close();
+}
+
+Database selectDatabase() {
+    int fileNumber;
+    cin >> fileNumber;
+
+    Database database;
+
+    switch (fileNumber) {
+        case 1:
+            database = Database::administators;
+            break;
+        case 2:
+            database = Database::employees;
+            break;
+        case 3:
+            database = Database::waiters;
+            break;
+        case 4:
+            database = Database::orders;
+            break;
+        case 5:
+            database = Database::restaurants;
+            break;
+        default:
+            cerr << "Invalid file number error!" << endl;
+            database = Database::undefined;
+            break;
+    }
+    return database;
+}
+
+string getDatabaseFile(Database database) {
+    string fileName;
+
+    switch (database) {
+        case Database::administators:
+            fileName = "administrators.txt";
+            userActivity("User read from administrators.txt");
+            break;
+        case Database::employees:
+            fileName = "employees.txt";
+            userActivity("User read from employees.txt");
+            break;
+        case Database::waiters:
+            fileName = "waiters.txt";
+            userActivity("User read from waiters.txt");
+            break;
+        case Database::orders:
+            fileName = "orders.txt";
+            userActivity("User read from orders.txt");
+            break;
+        case Database::restaurants:
+            fileName = "restaurant.txt";
+            userActivity("User read from restaurants.txt");
+            break;
+        case Database::undefined:
+            fileName = "";
+            break;
+    }
+    return fileName;
+}
+
+Administrator createAdministrator() {
+    string name;
+    int age;
+    string position;
+    int salary;
+    int entranceNumber;
+    cout << "Please input administrator data : " << endl;
+    cout << "Name: ";
+    cin >> name;
+    cout << endl;
+    cout << "Age: ";
+    cin >> age;
+    cout << endl;
+    cout << "Position: ";
+    cin >> position;
+    cout << endl;
+    cout << "Salary: ";
+    cin >> salary;
+    cout << endl;
+    cout << "Entrance number: ";
+    cin >> entranceNumber;
+    cout << endl;
+
+    cout << "Administrator created" << endl;
+    Administrator administrator{name, age, position, salary, entranceNumber};
+    return administrator;
+}
+
+Employee createEmployee() {
+    string name;
+    int age;
+    string position;
+    int salary;
+    cout << "Please input employee data : " << endl;
+    cout << "Name: ";
+    cin >> name;
+    cout << endl;
+    cout << "Age: ";
+    cin >> age;
+    cout << endl;
+    cout << "Position: ";
+    cin >> position;
+    cout << endl;
+    cout << "Salary: ";
+    cin >> salary;
+    cout << endl;
+
+    cout << "Employee created" << endl;
+    Employee employee{name, age, position, salary};
+    return employee;
+}
+
+Waiter createWaiter() {
+    string name;
+    int age;
+    string position;
+    int salary;
+    int floorNumber;
+    Order order;
+    cout << "Please input waiter data : " << endl;
+    cout << "Name: ";
+    cin >> name;
+    cout << endl;
+    cout << "Age: ";
+    cin >> age;
+    cout << endl;
+    cout << "Position: ";
+    cin >> position;
+    cout << endl;
+    cout << "Salary: ";
+    cin >> salary;
+    cout << endl;
+    cout << "Floor number: ";
+    cin >> floorNumber;
+    cout << endl;
+    cout << "Order: ";
+    cin >> order;
+    cout << endl;
+
+    cout << "Waiter created" << endl;
+    Waiter waiter{name, age, position, salary, floorNumber};
+    return waiter;
+}
+
+Restaurant createRestaurant() {
+    string title;
+    string location;
+    string status;
+
+    cout << "Please input restaurant data : " << endl;
+    cout << "Title: ";
+    cin >> title;
+    cout << endl;
+    cout << "Location: ";
+    cin >> location;
+    cout << endl;
+    cout << "Status: ";
+    cin >> status;
+    cout << endl;
+
+    cout << "Restaurant created" << endl;
+    Restaurant restaurant{title, location, status};
+    return restaurant;
+}
+
+Order createOrder() {
+    string items;
+    int price;
+    cout << "Please input order data : " << endl;
+    cout << "Item: ";
+    cin >> items;
+    cout << endl;
+    cout << "Price: ";
+    cin >> price;
+    cout << endl;
+
+    cout << "Order created" << endl;
+    Order order{items, price};
+    return order;
+}
+
+void readFromFile() {
+    cout << "Please select database for reading:" << endl;
+    cout << "1. Administrator" << endl;
+    cout << "2. Employee" << endl;
+    cout << "3. Waiter" << endl;
+    cout << "4. Order" << endl;
+    cout << "5. Restaurant" << endl;
+    cout << "Please, select number of table" << endl;
+
+    Database database = selectDatabase();
+
+    if (database == Database::undefined) {
+        throw std::invalid_argument("Invalid input type");
+    }
+
+    string fileName = getDatabaseFile(database);
+
+    cout << "Reading from database..." << endl;
+
+    ifstream read;
+    read.open(fileName);
+
+    if (!read.is_open()) {
+        cerr << "File opening error!" << endl;
+    }
+    string buff;
+    while (getline(read, buff)) {
+        cout << buff << endl;
+    }
+
+    read.close();
+    cout << "Reading from database finished." << endl;
+}
+
+
+
+void createAndWriteObject(Database database, ofstream &write) {
+    switch (database) {
+        case Database::administators:
+            write << createAdministrator() << endl;
+            userActivity("User wrote to administrators.txt");
+            break;
+        case Database::employees:
+            write << createEmployee() << endl;
+            userActivity("User wrote to employees.txt");
+            break;
+        case Database::waiters:
+            write << createWaiter() << endl;
+            userActivity("User wrote to waiters.txt");
+            break;
+        case Database::orders:
+            write << createOrder() << endl;
+            userActivity("User wrote to orders.txt");
+            break;
+        case Database::restaurants:
+            write << createRestaurant() << endl;
+            userActivity("User wrote to restaurants.txt");
+            break;
+    }
+}
+
+void writeToFile() {
+    cout << "Please select database for writing:" << endl;
+    cout << "1. Administrator" << endl;
+    cout << "2. Employee" << endl;
+    cout << "3. Waiter" << endl;
+    cout << "4. Order" << endl;
+    cout << "5. Restaurant" << endl;
+    cout << "Please, select number of table" << endl;
+
+    Database database = selectDatabase();
+
+    if (database == Database::undefined) {
+        throw std::invalid_argument("Invalid input type");
+    }
+    string fileName = getDatabaseFile(database);
+
+    cout << "Writing in database..." << endl;
+
+    ofstream write;
+    write.open(fileName, ios_base::app);
+
+    if (!write.is_open()) {
+        cerr << "File opening error!" << endl;
+    } else {
+        createAndWriteObject(database, write);
+    }
+    write.close();
+    cout << "Writing in database finished." << endl;
+}
+
+void makeOrder(){
+    userActivity("User ordered something");
+    string fileName = "orders.txt";
+    ofstream write;
+    write.open(fileName, ios_base::app);
+    if (!write.is_open()) {
+        cerr << "File opening error!" << endl;
+    } else {
+        write << createOrder() << endl;
+    }
+    write.close();
+}
+
+
+int main() {
+    //Login
+    User usertype = login();
+
+    //Program
+    if (usertype == User::admin) {
         cout << "You logged in as admin. You can read and write from database" << endl;
         cout << "Please select action: read | write" << endl;
+        userActivity("\n Admin logged in to app \n");
     } else {
         cout << "You logged in as user. You can read from database" << endl;
-        cout << "Please select action: read" << endl;
+        cout << "Please select action: read | order" << endl;
+        userActivity("\n User logged in to app \n");
     }
 
     string action;
     bool appIsActive = true;
-    string path = "database.txt";
 
     while (appIsActive) {
         cout << "Your action -> ";
         cin >> action;
-        if(action == "read"){
-            cout << "Reading from database..." << endl;
-
-            ifstream read;
-            read.open(path);
-
-            if(!read.is_open()){
-                cerr << "File opening error!" << endl;
-            }
-            while (read.is_open()){
-                string strInput;
-
-                getline(read, strInput);
-                cout << strInput << endl;
-
-                break;
-            }
+        if (action == "read") {
+            readFromFile();
+            continue;
+        } else if (action == "write" && usertype == User::admin) {
+            writeToFile();
             continue;
 
-            read.close();
-
-        } else if(action == "write" && usertype == User::admin){
-            cout << "Writing in database..." << endl;
-
-            ofstream write;
-            write.open(path);
-
-            if(!write.is_open()){
-                cerr << "File opening error!" << endl;
-            } else {
-                write << administrator1 << endl;
-                write << waiter1 << endl;
-            }
-            continue;
-            write.close();
-
-        } else if(action == "write" && usertype == User::user){
+        } else if (action == "write" && usertype == User::user) {
             cout << "You have no rights for writing database" << endl;
 
-        } else if(action == "exit"){
+        } else if (action == "order" && usertype == User::user) {
+            cout << "-*-* Please, make an order *-*-" << endl;
+            makeOrder();
+            cout << "-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-" << endl;
+
+        } else if (action == "exit") {
             cout << "Exit..." << endl;
             appIsActive = false;
             break;
@@ -122,104 +401,7 @@ int main() {
             appIsActive = false;
             break;
         }
-        return 0;
     }
 
-    /*
-     * vector<Worker> readWorkersFromFile(string fileName) {
-    string buff;
-    ifstream fin;
-    fin.open(fileName);
-    vector<Worker> result;
-    if (!fin.is_open()) {
-        cout << "File cannot be open!\n";
-    }
-    while (getline(fin, buff)) {
-        vector<string> v = split(buff, ',');
-        //stoi converts string to int
-        Worker worker = {stoi(v[0]), v[1], stoi(v[2]), v[3], v[4], stoi(v[5]), stoi(v[6])};
-        result.push_back(worker);
-    }
-    fin.close();
-    return result;
-}
-
-void writeWorkersToFile(string fileName, Worker listOfWorkers[], int arraySize) {
-    ofstream file(fileName);
-    for (int i = 0; i < arraySize; i++) {
-        file << convertWorkerToString(listOfWorkers[i]) << endl;
-    }
-    file.close();
-}*/
-
-
-
-
-
-    /*Restaurant rest1{"Aristocrat", "Holovna", "Opened"};
-    Restaurant rest2{"Lavanda"};
-    Restaurant rest3{rest1};
-
-    cout<<rest1;
-    cout<<rest2;
-    cout<<rest3;
-
-    Order menu{"Salad ", 220};
-    Order menu1{"Fries ", 320};
-    Order menu2 {"Steak ", 280};
-    //Order menu3;
-    Order otherMenu(menu);
-    //Order orderPlus = menu1 + menu;
-
-    //cout<<orderPlus;
-    cout<<menu;
-    cout<<menu1;
-    cout<<otherMenu;
-    cout<<menu2;
-
-    Waiter waiter1{"Petro", 23, "Waiter", 1200, 3, menu1};
-    Waiter waiter2{"John", 21, "Waiter", 1000, 1, menu2};
-    Employee *waiter3 = new Waiter();
-
-    waiter3->setName(string("Michael"));
-    waiter3->setSalary(2000);
-
-    Waiter waiter4{};
-    Waiter &waiterRef = waiter4;
-    waiterRef.setName(string ("Alex"));
-    waiterRef.setAge(23);
-    waiterRef.setSalary(750);
-    waiterRef.Waiter::setFloorNumber(2);
-    
-    Administrator administrator1{"Ivan", 34, "Administrator", 3000, 2};
-    Administrator administrator2{"Frank", 31, "Administrator", 2500, 1};
-
-    outputInfoOnUI(waiter1);
-    outputInfoOnUI(waiter2);
-    outputInfoOnUI(*waiter3);
-    outputInfoOnUI(waiter4);
-    outputInfoOnUI(administrator1);
-    outputInfoOnUI(administrator2);
-    outputAmountOfEmployees(waiter1);
-    outputAmountOfEmployees(administrator1);
-    outputInfoOnUI(rest1);
-    outputInfoOnUI(menu1);
-
-*//*
-    cin>>menu3;
-    cout<<menu3;*/
     return 0;
-}
-
-void outputInfoOnUI(const Printable &obj){
-    cout<<"-------------------------------------"<<endl;
-    cout<<obj;
-    cout<<"-------------------------------------"<<endl;
-  }
-
-void outputAmountOfEmployees(const Employee &employee){
-    cout<<"-------------------------------------"<<endl;
-    employee.outputAmountOfEmployees();
-    cout<<"-------------------------------------"<<endl;
-
 }
