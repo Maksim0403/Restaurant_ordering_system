@@ -271,16 +271,19 @@ void readFromFile() {
 
     ifstream read;
     read.open(fileName);
+    try {
+        if (!read.is_open()) {
+            throw "File opening error!";
+        }
+        string buff;
+        while (getline(read, buff)) {
+            cout << buff << endl;
+        }
 
-    if (!read.is_open()) {
-        cerr << "File opening error!" << endl;
+        read.close();
+    } catch(const char *ex){
+        cerr << ex;
     }
-    string buff;
-    while (getline(read, buff)) {
-        cout << buff << endl;
-    }
-
-    read.close();
     cout << "Reading from database finished." << endl;
 }
 
@@ -346,8 +349,9 @@ void makeOrder(){
     string fileName = "orders.txt";
     ofstream write;
     write.open(fileName, ios_base::app);
+
     if (!write.is_open()) {
-        cerr << "File opening error!" << endl;
+        throw "File opening error!";
     } else {
         write << createOrder() << endl;
     }
